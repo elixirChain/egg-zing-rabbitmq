@@ -34,15 +34,16 @@ function getChannel(_config) {
     }, function (error0, connection) {
       if (error0) {
         reject(error0);
+      } else {
+        connection.createChannel(function (error1, _channel) {
+          if (error1) {
+            reject(error1);
+          }
+
+          resolve(_channel);
+
+        });
       }
-      connection.createChannel(function (error1, _channel) {
-        if (error1) {
-          reject(error1);
-        }
-
-        resolve(_channel);
-
-      });
     });
   })
 }
